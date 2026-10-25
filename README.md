@@ -1,61 +1,41 @@
-# Awesome Loop
+<div align="center">
+
+<img alt="Awesome Loop: a shared Transformer core reused across recurrent depth, between input and output" src="assets/banner.svg" width="100%">
 
 [![Awesome](https://awesome.re/badge-flat2.svg)](https://awesome.re)
+[![GitHub](https://img.shields.io/badge/GitHub-JiwenJ%2FAwesome--Loop-181717.svg?style=flat-square&logo=github)](https://github.com/JiwenJ/Awesome-Loop)
 [![Papers](https://img.shields.io/badge/Papers-398-b31b1b.svg?style=flat-square&logo=arxiv&logoColor=white)](#papers-20252026)
 [![Code Links](https://img.shields.io/badge/Code%20Links-118-2ea44f.svg?style=flat-square&logo=github)](#papers-20252026)
-[![Coverage](https://img.shields.io/badge/Years-2025--2026-6f42c1.svg?style=flat-square)](#scope-and-inclusion-policy)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JiwenJ/Awesome-Loop/pulls)
 
-A curated reading list on **Looped Transformers**, **recurrent-depth language models**, **recursive Transformers**, and selected closely related reasoning architectures.
+A curated list of papers and code on **looped Transformers**, **recurrent-depth language models**, and **recursive reasoning**, newest first. It covers architecture, theory, training stability, adaptive depth, mechanistic analysis, inference systems, and multimodal applications. Core looped Transformers and related recursive reasoners are labeled separately.
 
-本仓库聚焦在深度方向复用 Transformer 层、模块或层组的 Loop / Looped Transformer：涵盖架构、理论、训练与稳定性、自适应深度、机制分析、推理系统及跨模态应用；相关递归推理单独标注。
-
-- **Last audited:** `2026-10-20`.
-- **Main window:** `2025-01-01` through `2026-10-20`.
-- **Main catalog:** **398 deduplicated papers** = **306 core** + **89 related** + **3 surveys/position papers**. The dated table has **393 papers** (**76 dated 2025**, **317 dated 2026**); a separate short table retains **5 confirmed publications with unresolved first-public dates**. **118 entries** link verified public author/paper implementation code. Earlier preprints with verified 2025 venues are listed separately and excluded from these counts.
-- **Placement:** one global reverse-chronological dated table; same-day entries are sorted by title. Month-only dates are preserved and placed after day-dated entries in the same month, without asserting an unknown day. The Track column identifies scope and topic without splitting the timeline.
-- **Dates:** arXiv **v1 submission date** in UTC, rather than latest revision or announcement date; a documented precursor supplies the date when arXiv explicitly identifies a later record as the same work. Non-arXiv entries use a verified primary publication date or month, including publisher-registered online dates, with the date basis recorded in the audit. IEEE Xplore addition dates are labeled as such and are not asserted to be earliest public dates. Conference year never replaces a known original preprint date; recognized conference papers are retained even when their exact first-public date is unresolved.
-- **Latest refresh:** **134 main-catalog additions** since the 2026-10-15 snapshot, including historical gaps and recent submissions. The [2026-10-20 audit](docs/search-audit-2026-10-20.md) records primary evidence, aliases, exclusions, and pending candidates; the [previous 323-candidate ledger](docs/search-audit-2026-10-15.md) remains available.
-- **Evidence:** titles, dates, and relevance were checked against primary paper records and abstracts, with selected full-text/project checks for ambiguous mechanisms, aliases, and code. This is a dated literature snapshot; it does not claim exhaustive coverage or independent reproduction. Paper inclusion does not imply peer review.
+</div>
 
 ## Contents
 
-- [Scope and inclusion policy](#scope-and-inclusion-policy)
-- [Suggested reading order](#suggested-reading-order)
-- [Papers: 2025–2026](#papers-20252026)
-- [Confirmed publications with unresolved dates](#confirmed-publications-with-unresolved-dates)
-- [Earlier preprints with 2025 venues](#earlier-preprints-with-2025-venues)
-- [Version notes and unresolved candidates](#version-notes-and-unresolved-candidates)
-- [Search method and exclusions](#search-method-and-exclusions)
-- [Latest search audit and candidate ledger](docs/search-audit-2026-10-20.md)
-- [Previous 323-candidate ledger](docs/search-audit-2026-10-15.md)
-- [Contributing](#contributing)
-
-## Scope and inclusion policy
-
-**Core** papers repeatedly apply a learned Transformer layer, block, or stack along computational depth, or substantively analyze, train, stabilize, retrofit, route, or accelerate that mechanism. Both fixed and adaptive loop counts qualify. Explicitly looping pretrained layers, partially looped attention, and looped diffusion Transformers are included when recurrence is part of the architecture or inference method.
-
-**Related** marks selected HRM/TRM-family recursive reasoners, equilibrium/feedback reasoning, partial expert sharing, and depth-looped hybrid/SSM language models. These provide useful comparisons but need not implement the same within-token Transformer-depth recurrence. Their summaries state what is actually repeated. **Survey** marks reviews and substantive position/taxonomy papers rather than new architecture results.
-
-Ordinary autoregressive decoding, chain-of-thought generation, agent/tool feedback loops, diffusion denoising schedules alone, and recurrence over sequence time alone do not qualify as core Loop research. A paper that merely mentions a looped model is insufficient. Compare parameter count, training FLOPs, inference FLOPs, cache memory, data, and tuning separately: parameter efficiency alone does not establish compute efficiency.
-
-**Code** links are author- or paper-linked implementations. **Project** and **Model** links are labeled separately. A missing Code link means no public author implementation was verified in this audit, rather than proof that none exists. Community implementations are not relabeled as official code.
-
-## Suggested reading order
-
-1. **Why loop?** [Reasoning with Latent Thoughts](https://arxiv.org/abs/2502.17416) and [A Formal Comparison Between Chain of Thought and Latent Thought](https://arxiv.org/abs/2509.25239) for reasoning bias and expressivity.
-2. **Large-scale language models:** [Huginn](https://arxiv.org/abs/2502.05171), [Mixture-of-Recursions](https://arxiv.org/abs/2507.10524), and [Ouro](https://arxiv.org/abs/2510.25741) for recurrent cores, token routing, and pretraining.
-3. **Make depth usable:** [LoopFormer](https://arxiv.org/abs/2602.11451), [Parcae](https://arxiv.org/abs/2604.12946), and [Residual Scaling](https://arxiv.org/abs/2606.18524) for variable budgets and stability.
-4. **Check the comparison budget:** [Iso-Depth Scaling Laws](https://arxiv.org/abs/2604.21106), [Loop the Loopies!](https://arxiv.org/abs/2607.16051), and [SMELT](https://arxiv.org/abs/2609.01343) for controlled scaling evidence.
-5. **Serving and memory:** [Parallel Loop Transformer](https://arxiv.org/abs/2510.24824), [MELT](https://arxiv.org/abs/2605.07721), [Looped Latent Attention](https://arxiv.org/abs/2607.15456), and [LoopSpec](https://arxiv.org/abs/2609.17184).
-6. **Mechanisms and related reasoners:** [Latent Chain-of-Thought?](https://arxiv.org/abs/2507.02199), [Mechanistic Analysis](https://arxiv.org/abs/2604.11791), [HRM](https://arxiv.org/abs/2506.21734), and [TRM](https://arxiv.org/abs/2510.04871).
+| Section | Jump to |
+| :---: | :--- |
+| [2026](#2026)&nbsp;(317) | [Oct](#october-2026) · [Sep](#september-2026) · [Aug](#august-2026) · [Jul](#july-2026) · [Jun](#june-2026) · [May](#may-2026) · [Apr](#april-2026) · [Mar](#march-2026) · [Feb](#february-2026) · [Jan](#january-2026) |
+| [2025](#2025)&nbsp;(76) | [Dec](#december-2025) · [Nov](#november-2025) · [Oct](#october-2025) · [Sep](#september-2025) · [Aug](#august-2025) · [Jul](#july-2025) · [Jun](#june-2025) · [May](#may-2025) · [Mar](#march-2025) · [Feb](#february-2025) · [Jan](#january-2025) |
+| More papers | [Unresolved dates](#confirmed-publications-with-unresolved-dates) (5) · [Earlier preprints](#earlier-preprints-with-2025-venues) (8) |
+| Reading guide | [Scope](docs/reading-guide.md#scope-and-inclusion-policy) · [Suggested reading](docs/reading-guide.md#suggested-reading-order) · [Version notes](docs/reading-guide.md#version-notes-and-unresolved-candidates) |
+| Curation | [Latest audit](docs/search-audit-2026-10-20.md) · [Previous audit](docs/search-audit-2026-10-15.md) · [Contributing](#contributing) |
 
 ## Papers: 2025–2026
 
-All 393 dated main-window works appear below; 5 additional confirmed publications follow with their first-public dates unresolved. Track prefixes distinguish **Core**, **Related**, and **Survey**; no work is counted twice for belonging to multiple topics.
+**398 papers · 118 entries with code** · 306 Core / 89 Related / 3 Survey · Literature snapshot: **2026-10-20**.
+
+The timeline contains **393 dated papers**; [5 confirmed publications with unresolved dates](#confirmed-publications-with-unresolved-dates) complete the main catalog. The [8 earlier preprints](#earlier-preprints-with-2025-venues) are excluded from that count.
+
+**Core** covers shared Transformer computation across depth; **Related** covers selected recursive reasoners and depth-sharing alternatives; **Survey** covers reviews and position papers. Dates retain their verified day or month precision. [Scope, date conventions, and code policy →](docs/reading-guide.md#scope-and-inclusion-policy)
+
+### 2026
+
+#### October 2026
 
 | Date | Track | Paper Title | Summary |
-| --- | --- | --- | --- |
+| :---: | :--- | :--- | :--- |
 | 2026-10-16 | Core · Architecture/memory | [Causal Latent Workspaces for Looped Transformers](https://arxiv.org/abs/2610.22796) [Code](https://github.com/izaznov/causal-latent-workspace-transformer) | Adds gated causal-prefix latent workspaces and content-addressed reads between four applications of an input-anchored shared Transformer block; tests byte-level language modeling against parameter-matched controls. |
 | 2026-10-16 | Related · Recursive reasoning/application | [Look, Reason, Draw a Region: Recursive Refinement for Spatial Context Prediction](https://arxiv.org/abs/2610.23302) | Introduces Spatial-TRM, which repeatedly applies one shared two-layer Transformer to reasoning and answer states over frozen vision-language features, then decodes convex regions for spatial context prediction. |
 | 2026-10-16 | Related · Recursive reasoning/application | [RTSM: Adapting Recursive Models to Multivariate Time-Series Classification](https://arxiv.org/abs/2610.23353) | Combines convolutional temporal tokenization with a single latent state refined by shared attention–SwiGLU blocks and a pooled classifier, adapting TRM-style supervision and halting to time-series classification. |
@@ -111,6 +91,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-10-01 | Core · Architecture/scaling | [Looping Beyond Twice: A Scalable Recipe for Looped Mixture-of-Experts](https://arxiv.org/abs/2610.01153) [Code](https://github.com/hed-ucas/LOOM) | Introduces LOOM, combining residual scaling and repeated input injection with per-loop routers and residual transport; separates near-iso-FLOP comparisons from higher-compute gains at deeper recurrence. |
 | 2026-10-01 | Core · Architecture/systems | [The Surprising Effectiveness of Shared Memory in Looped Transformers](https://arxiv.org/abs/2610.02383) | Pretrains loops to read first-recursion KV memory plus a short local window, reducing context memory; analyzes complementary shared/local representations and gradient transport through the shared cache. |
 | 2026-10-01 | Core · Theory | [Universal interpolation for deep residual self-attention networks](https://arxiv.org/abs/2610.01981) [Code](https://github.com/sibyllema/attention_universality) | Proves universal sequence interpolation by composing two fixed residual softmax-attention blocks, varying their order, signs, and durations rather than learning separate parameters for every depth. |
+
+#### September 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-09-30 | Related · Recursive reasoning/systems | [A Tilted Bowl Is Not a Slippery Slope: Compressing Looped Models](https://arxiv.org/abs/2609.39277) | Distinguishes accumulated error in non-settling loops from displaced equilibria in settling loops, then tests adaptive low-bit computation followed by higher-precision finishing on puzzle reasoners. |
 | 2026-09-30 | Core · Training/retrofit | [Closing the Loop: Practical Training Recipes for Looped Language Models](https://arxiv.org/abs/2610.00673) | Develops compute-efficient from-scratch training and a minimal pretrained-model conversion recipe using input mixing and smoothed exit supervision; controls data and token budgets when comparing recurrence with dense baselines. |
 | 2026-09-30 | Core · Application | [DeepJEPA: Scaling World Models from Within](https://arxiv.org/abs/2610.00368) | Makes predictive world-model transition depth adaptive so extra shared computation concentrates on decision-critical imagined events. |
@@ -181,6 +166,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-09-01 | Core · Retrofit | [Latent Recurrent Thoughts: Recurrent Refinement of Proposed Latents for Reasoning with Frozen LLMs](https://arxiv.org/abs/2609.01117) [Code](https://github.com/czl-david/latent-recurrent-thoughts) | Refines proposed latent thoughts with a small recurrent auxiliary reasoner before a frozen language model decodes the answer. |
 | 2026-09-01 | Core · Analysis | [Looped Transformers under the Jacobian Lens: Does the Global Workspace Survive Recurrence?](https://arxiv.org/abs/2609.01924) | Extends the Jacobian lens to virtual recurrent depth and compares causal access to workspace representations in Ouro and Huginn. |
 | 2026-09-01 | Core · Scaling | [SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers](https://arxiv.org/abs/2609.01343) | Measures scaling laws for MoE models that loop the middle half of layers twice while matching per-token FLOPs, non-embedding parameters, and key-value cache. |
+
+#### August 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-08-31 | Core · Theory | [Universal Transformers for Circuit Computations: Perfect Length Generalization in Tiny Transformers](https://arxiv.org/abs/2608.31067) | Constructs a tiny Universal Transformer with depth-aware positions and autonomous stopping that repeatedly reduces well-formed symbolic circuits. |
 | 2026-08-30 | Related · Recursive reasoning | [Dissecting Hierarchical Reasoning Models: A Mechanistic Study](https://arxiv.org/abs/2609.22197) | Uses causal state interventions, probes, and sparse-autoencoder ablations to study constraint-aware refinement and the role of hierarchy in HRM. |
 | 2026-08-29 | Related · Recursive reasoning | [Evaluating Tiny Recursive Models Across Training for Code Generation](https://arxiv.org/abs/2608.29376) | Tracks teacher-forced fit and free-running code generation across training for an autoregressive TRM and matched controls. |
@@ -212,6 +202,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-08-03 | Core · Architecture/analysis | [TextNCA: Neural Cellular Automata for Language Modeling via Hierarchical Local Attention](https://arxiv.org/abs/2608.02050) | Studies causal windowed-attention neural cellular automata with shared iterations at three spatial scales, separating gains from iteration, gating, and the attention-window schedule against Transformer controls. |
 | 2026-08-01 | Related · Recursive reasoning/application | [REIMU: Efficient Heterogeneous Hierarchical Reasoning for SSL-Based Speech Deepfake Detection](https://arxiv.org/abs/2608.00857) [Code](https://github.com/saki-ciallo/REIMU-SDD) | Compares single-pass, shared-recurrence, homogeneous HRM, and attention/linear-attention heterogeneous HRM backbones for speech deepfake detection, finding no inherent gain from recurrence alone. |
 | 2026-08 | Core · Training/adaptive depth | [Depth-selective LoRA: Augmenting mixture-of-recursions with sparse low-rank adaptation](https://www.sciencedirect.com/science/article/pii/S0957417426013035) | Adds gated low-rank adapters only at the final Mixture-of-Recursions step, testing selective capacity augmentation while preserving the baseline routing and matched attention, FFN, and cache budgets. |
+
+#### July 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-07-31 | Core · Retrofit | [Retrofitting Recurrent Depth into a Pretrained Language Model: Installation, Extrapolation, Transfer, and Retention at Two Parameter Budgets](https://arxiv.org/abs/2608.11233) [Code](https://github.com/mshapiro123/recurrent-qwen-svgd) | Installs a shared middle block and re-entry bridge in a pretrained language model and measures procedural transfer, extrapolation, and capability retention. |
 | 2026-07-30 | Core · Architecture | [Looped Transformers with Source-Centered State Evolution](https://arxiv.org/abs/2607.27656) | Uses a learned source anchor and deviation-coordinate recurrence to preserve an exact reference fixed point while retaining input-conditioned computation. |
 | 2026-07-30 | Core · Application | [ReLoop-UME: Recurrent Depth with Learnable Retrieval Registers for Universal Multimodal Embedding](https://arxiv.org/abs/2607.28751) | Reuses a retrieval-forming multimodal block with persistent retrieval registers before producing a universal embedding. |
@@ -241,6 +236,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-07 | Core · Application | [LoopCoder: Scaling Code Intelligence via Looped Language Models](https://aclanthology.org/2026.findings-acl.796/) | Presents a 40B recurrent code model trained on 12T+ tokens using dense-to-loop initialization and recurrent pretraining and post-training; studies stability and instruction and reasoning variants. ACL 2026; proceedings month only. |
 | 2026-07 | Core · Architecture | [Polymorphic Universal Transformer](https://aclanthology.org/2026.acl-long.1809/) | Combines conditional sparse parameter subspaces, SiLU attention, and uncertainty-aware depth scheduling within a shared-parameter Universal Transformer to reduce rank collapse and compute skew across recurrent steps. ACL 2026; proceedings month only. |
 | 2026-07 | Related · Recursive reasoning/training | [TRM-Planner: Offline Target Planning and Distillation for Tiny Recursive Models](https://aclanthology.org/2026.findings-acl.1350/) | Caches teacher TRM states, logits, and quality metadata from extended stochastic refinement, then distills these offline targets into a student without increasing its inference-time recurrence. |
+
+#### June 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-06-30 | Core · Training | [Bridging the Gap Between Latent and Explicit Reasoning with Looped Transformers](https://arxiv.org/abs/2606.31779) [Code](https://github.com/yingfan-bot/lotus) | Combines a looped padded transformer with parallel supervision on latent positions to align latent and explicit reasoning steps. |
 | 2026-06-30 | Core · Compression/MoE | [CHERRY: Compressed Hierarchical Experts with Recurrent Representational Yield](https://arxiv.org/abs/2606.31796) | Compresses adjacent Transformer layers and restores effective depth by repeatedly unrolling a shared middle core; combines recurrently compressed models as sparsely gated experts. Evidence is limited to the reported model family and experiments. |
 | 2026-06-29 | Core · Training | [Stabilizing Extrapolation in Looped Transformers via Learned Stochastic Stopping](https://arxiv.org/abs/2606.29983) | Breaks spurious sequence-length and loop-count correlations through stochastic training depths and learned stopping schedules. |
@@ -267,6 +267,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-06-02 | Core · Application | [BA-T: An Iterative Transformer for Two-View Bundle Adjustment](https://arxiv.org/abs/2606.03287) [Code](https://github.com/zhangganlin/BA-T) | Uses a single repeatable transformer layer to implement latent bundle-adjustment-style updates for pose and two-view geometry refinement. |
 | 2026-06-02 | Related · Recursive reasoning | [When to Re-Plan: Subgoal Persistence in Hierarchical Latent Reasoning](https://arxiv.org/abs/2606.03741) | Studies how long a high-level subgoal should persist across low-level updates in a hierarchical latent reasoner. |
 | 2026-06 | Core · Application/adaptive depth | [Edge-RecViT: Efficient Vision Transformer via Semantic-Refined Dynamic Recursion](https://openaccess.thecvf.com/content/CVPR2026/papers/Li_Edge-RecViT_Efficient_Vision_Transformer_via_Semantic-Refined_Dynamic_Recursion_CVPR_2026_paper.pdf) [Code](https://github.com/RicardoLee510520/Edge-RecViT) | Combines a fully shared recursive vision Transformer with an edge-aware token ranker, allocating deeper refinement to informative edge tokens and early exits to redundant tokens. CVPR 2026; the date records the proceedings month only. |
+
+#### May 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-05-31 | Core · Architecture | [CART: Context-Anchored Recurrent Transformer -- A Parameter-Efficient Architecture with Learned Stability](https://arxiv.org/abs/2606.01495) [Code](https://github.com/ccapps42/CART) | Anchors a shared recurrent core to precomputed key-value tensors and reports parameter-parity and variable-depth limitations of the resulting language model. |
 | 2026-05-30 | Core · Theory | [Looped Transformers with Layer Normalization Provably Learn the Power Method](https://arxiv.org/abs/2606.00605) | Proves that gradient descent learns power iteration in a looped linear transformer with layer normalization on principal-component prediction. |
 | 2026-05-30 | Related · Recursive reasoning/application | [Tiny Recursive Models for Solving the J2-Perturbed Lambert Problem](https://arxiv.org/abs/2606.00895) [Code](https://github.com/MinduliW/TRCLambert) | Adapts a shared Transformer-based tiny recursive solver to the J2-perturbed Lambert problem, alternating latent reasoning with differentiable trajectory-error correction to refine departure velocity. |
@@ -309,6 +314,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-05-07 | Related · Partial expert sharing | [UniPool: Learning Expert-to-Layer Ownership from Brief Global Access](https://arxiv.org/abs/2605.06665) [Code](https://github.com/Centaurus-Alpha/UniPool) | Uses a brief global expert-pool phase to learn expert-to-layer ownership before locking disjoint MoE layers, with persistent full-pool sharing as a control for capacity and compute comparisons. |
 | 2026-05-05 | Core · Application | [RD-ViT: Recurrent-Depth Vision Transformer for Semantic Segmentation with Reduced Data Dependence Extending the Recurrent-Depth Transformer Architecture to Dense Prediction](https://arxiv.org/abs/2605.03999) | Adapts a shared recurrent vision-transformer block with spatial halting and depth adapters to 2D and 3D medical segmentation. |
 | 2026-05-02 | Related · Equilibrium models | [Visual Implicit Autoregressive Modeling](https://arxiv.org/abs/2605.01220) | Places an implicitly differentiated equilibrium layer between shallow visual-autoregressive blocks and exposes per-scale solver iterations as a compute control. |
+
+#### April 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-04-28 | Core · Application/architecture | [The Thinking Pixel: Recursive Sparse Reasoning in Multimodal Diffusion Latents](https://arxiv.org/abs/2604.25299) | Adds sparse shared-module recursion inside diffusion joint-attention layers, refining visual tokens with experts selected from current states, diffusion time, and conditioning. |
 | 2026-04-24 | Core · Application | [Weight-Tied Adaptive Recursive Vision–Language–Action Transformer for Efficient Multimodal Robotic Control](https://pub.scientificirg.com/index.php/JSAA/article/view/188) | Fuses pretrained visual-language features and proprioception, then repeatedly refines them with weight-tied Transformer layers before predicting continuous robot actions; evaluates offline DROID action prediction. |
 | 2026-04-23 | Core · Architecture | [Hyperloop Transformers](https://arxiv.org/abs/2604.21254) | Adds hyper-connections between applications of a shared middle stack to improve the parameter efficiency of sandwich-style looped language models. |
@@ -332,6 +342,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-04-02 | Core · Architecture/retrofitting | [Ouroboros: Dynamic Weight Generation for Recursive Transformers via Input-Conditioned LoRA Modulation](https://arxiv.org/abs/2604.02051) [Code](https://github.com/RightNow-AI/ouroboros) | Modulates a recursive pretrained Transformer block with a hidden-state-conditioned controller over frozen LoRA bases, gated recurrence, and per-step normalization; reports training gains and a held-out generalization limitation. |
 | 2026-04-01 | Core · Architecture | [Associative-State Universal Transformers: Sparse Retrieval Meets Structured Recurrence](https://arxiv.org/abs/2604.25930) | Augments a shared-depth Universal Transformer with structured recurrent state and sparse slot retrieval; small-scale language modeling and associative-recall studies expose retrieval limits of compressed state. |
 | 2026-04-01 | Core · Architecture/systems | [Universal YOCO for Efficient Depth Scaling](https://arxiv.org/abs/2604.01220) | Adds a shared iterative self-decoder to YOCO while confining recursion to shallow efficient-attention layers, combining depth scaling with a constant global KV cache and linear prefill. |
+
+#### March 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-03-31 | Core · Application | [UCell: rethinking generalizability and scaling of bio-medical vision models](https://arxiv.org/abs/2604.00243) [Code](https://github.com/jiyuuchc/ucell) | Builds a cell-segmentation model around a repeatedly reused two-layer vision Transformer with input reinjection and latent tokens, using chunked detached training to limit memory. |
 | 2026-03-30 | Core · Application | [LA-Sign: Looped Transformers with Geometry-aware Alignment for Skeleton-based Sign Language Recognition](https://arxiv.org/abs/2603.29057) | Combines shared-parameter latent transformer refinement with geometry-aware skeletal-text alignment for sign-language recognition. |
 | 2026-03-25 | Core · Training | [Sparse Growing Transformer: Training-Time Sparse Depth Allocation via Progressive Attention Looping](https://arxiv.org/abs/2603.23998) [Code](https://github.com/YaoChen0203/Sparse-Growing-Transformer) | Progressively adds recurrence to selected attention heads during training rather than applying a fixed looping pattern throughout. |
@@ -351,6 +366,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-03-03 | Related · Recursive reasoning/training | [Form Follows Function: Recursive Stem Model](https://arxiv.org/abs/2603.15641) [Code](https://github.com/navidivan/rsm) | Trains a TRM-style shared transition using detached warm-up iterations and final-step supervision, studying separate inner and outer depth growth, stochastic transitions, and test-time extrapolation. |
 | 2026-03-02 | Core · Architecture | [AdaPonderLM: Gated Pondering Language Models with Token-Wise Adaptive Depth](https://arxiv.org/abs/2603.01914) | Learns token-wise halting during recurrent language-model pretraining and reuses halted tokens' cached key-value states. |
 | 2026-03-02 | Related · Recursive reasoning | [Symbol-Equivariant Recurrent Reasoning Models](https://arxiv.org/abs/2603.02193) [Code](https://github.com/ml-jku/SE-RRM) | Builds symbol-permutation equivariance into HRM/TRM-style recurrent reasoners to reduce augmentation needs and improve size extrapolation. |
+
+#### February 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-02-18 | Core · Analysis/retrofitting | [From Growing to Looping: A Unified View of Iterative Computation in LLMs](https://arxiv.org/abs/2602.16490) | Compares depth-grown and looped models through depth-wise mechanistic signatures, then tests inference-time looping of middle blocks in models trained by depth growth. |
 | 2026-02-16 | Core · Inference/retrofit | [Inner Loop Inference for Pretrained Transformers: Unlocking Latent Capabilities Without Training](https://arxiv.org/abs/2602.14759) [Code](https://github.com/jonathanlys01/looped-transformer) | Extends computation in frozen pretrained language models by repeatedly reapplying a selected Transformer-block range and studies the resulting accuracy and latent-state trajectories. |
 | 2026-02-12 | Core · Architecture | [SpiralFormer: Looped Transformers Can Learn Hierarchical Dependencies via Multi-Resolution Recursion](https://arxiv.org/abs/2602.11698) | Runs shared transformer layers under a multi-resolution recursion schedule to encourage specialization across sequence scales. |
@@ -363,6 +383,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-02-08 | Core · Application | [Recurrent-Depth VLA: Implicit Test-Time Compute Scaling of Vision-Language-Action Models via Latent Iterative Reasoning](https://arxiv.org/abs/2602.07845) | Uses a weight-tied action head with convergence-based stopping to scale latent computation in vision-language-action policies. |
 | 2026-02-05 | Core · Application | [Multimodal Latent Reasoning via Hierarchical Visual Cues Injection](https://arxiv.org/abs/2602.05359) | Introduces HIVE, repeating Transformer blocks for latent multimodal reasoning while injecting hierarchical visual cues from global scene context to regional details. |
 | 2026-02-02 | Core · Application | [LoopViT: Scaling Visual ARC with Looped Transformers](https://arxiv.org/abs/2602.02156) [Code](https://github.com/WenjieShu/LoopViT) | Applies a weight-shared convolution-attention block and entropy-based dynamic stopping to visual ARC reasoning. |
+
+#### January 2026
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2026-01-31 | Core · Theory/analysis | [Beyond What Seems Necessary: Hidden Gains from Scaling Training-Time Reasoning Length under Outcome Supervision](https://arxiv.org/abs/2602.00927) | Studies why longer outcome-supervised training computation can improve out-of-distribution generalization after in-distribution saturation, combining looped-Transformer experiments with reasoning-token-budget experiments. |
 | 2026-01-30 | Related · Recursive reasoning/application | [Implementasi Hierarchical Reasoning Model (HRM) Pada Kasus Klasifikasi](https://ejurnal.undipa.ac.id/index.php/sisiti/article/view/2133) | Studies a simulated high-level/low-level HRM classifier on breast-cancer, diabetes, and Iris tabular datasets, reporting dependence on feature dimension and failures on some low-dimensional tasks. |
 | 2026-01-29 | Core · Architecture/retrofit | [ConceptMoE: Adaptive Token-to-Concept Compression for Implicit Compute Allocation](https://arxiv.org/abs/2601.21420) [Code](https://github.com/ZihaoHuang-notabot/ConceptMoE) | Compresses tokens into adaptive concepts and reallocates saved computation, including a continued-training variant that loops intermediate MoE Transformer layers without adding parameters. |
@@ -373,6 +398,13 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2026-01-14 | Core · Training/analysis | [Energy-Entropy Regularization: The True Power of Minimal Looped Transformers](https://arxiv.org/abs/2601.09588) | Combines Tsallis-entropy regularization and Hamiltonian-inspired optimization to train a minimal single-head looped Transformer on a long-range induction task. |
 | 2026-01-12 | Related · Recursive reasoning/application | [Tab-TRM: Tiny Recursive Model for Insurance Pricing on Tabular Data](https://arxiv.org/abs/2601.07675) | Adapts the TRM answer-and-reasoning-state pattern to insurance pricing with a compact fully connected recursive core, studying parameter-efficient tabular prediction. |
 | 2026-01-05 | Core · Theory | [Context-Free Recognition with Transformers](https://arxiv.org/abs/2601.01754) | Shows logarithmically looped Transformers can recognize context-free languages with polynomial padding, and gives lower padding requirements for unambiguous grammars; compares looped and fixed-depth recognition. |
+
+### 2025
+
+#### December 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-12-23 | Core · Analysis | [Block-Recurrent Dynamics in Vision Transformers](https://arxiv.org/abs/2512.19941) | Tests a block-recurrent hypothesis for trained ViTs by fitting compact recurrent surrogates, then analyzes their latent dynamics. |
 | 2025-12-18 | Related · Recursive reasoning/application | [Tiny Recursive Control: Iterative Reasoning for Efficient Optimal Control](https://arxiv.org/abs/2512.16824) | Adapts TRM-style shared hierarchical latent refinement to continuous optimal control, iteratively improving control sequences using simulated trajectories and tracking-error feedback. |
 | 2025-12-16 | Core · Architecture | [Universal Reasoning Model](https://arxiv.org/abs/2512.14693) [Code](https://github.com/UbiquantAI/URM) | Analyzes Universal Transformer variants and adds short convolutions and truncated backpropagation for stronger structured puzzle reasoning. |
@@ -381,6 +413,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2025-12-04 | Related · Recursive reasoning/analysis | [Tiny Recursive Models on ARC-AGI-1: Inductive Biases, Identity Conditioning, and Test-Time Compute](https://arxiv.org/abs/2512.11847) [Code](https://github.com/AntonioRoye/TinyRecursiveModels) | Audits an ARC Prize TRM checkpoint through augmentation, puzzle-identity, recursion-depth, and efficiency ablations, separating test-time voting and task conditioning from effective recurrent computation. |
 | 2025-12-03 | Core · Architecture/attention recurrence | [Nexus: Higher-Order Attention Mechanisms in Transformers](https://arxiv.org/abs/2512.03377) | Recursively refines query and key representations through nested attention using shared projection weights across recursion levels, increasing attention order without parameter growth. |
 | 2025-12-01 | Core · Evaluation | [Benchmarking Recurrent Depth Architectures](https://nhsjs.com/2025/benchmarking-recurrent-depth-architectures/) | Compares FraiLT-style, prelude-core-coda, and relaxed recurrent Transformers on TinyStories at roughly 4–5M parameters, reporting validation loss, training time, and memory with initialization and scale limitations. |
+
+#### November 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-11-26 | Related · Equilibrium reasoning | [Closed-Loop Transformers: Autoregressive Modeling as Iterative Latent Equilibrium](https://arxiv.org/abs/2511.21882) | Adds energy-based latent refinement before token commitment, with convergence analysis and preliminary binary-parity experiments. |
 | 2025-11-21 | Related · Recursive reasoning/training | [Latent Reasoning in TRMs is Secretly a Policy Improvement Operator](https://arxiv.org/abs/2511.16886) | Interprets TRM latent updates as policy improvement and adapts reinforcement-learning and diffusion-inspired training to reduce unproductive recurrent computation. |
 | 2025-11-11 | Related · Recursive reasoning/training | [Accelerating Training Speed of Tiny Recursive Models with Curriculum Guided Adaptive Recursion](https://arxiv.org/abs/2511.08653) [Code](https://github.com/Kaleemullahqasim/CGAR) | Schedules TRM recursion depth with a progressive curriculum and exponentially weights supervision steps, studying Sudoku training-speed, accuracy, and halting trade-offs. |
@@ -389,6 +426,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2025-11-04 | Related · Recursive reasoning/training | [Test-time Adaptation of Tiny Recursive Models](https://arxiv.org/abs/2511.02886) [Code](https://github.com/TrelisResearch/TinyRecursiveModels) | Studies full-model test-time fine-tuning of a pretrained tiny recursive reasoner for ARC Prize tasks within the competition compute limit, rather than adapting only task embeddings. |
 | 2025-11 | Core · Inference/retrofit | [Layer Duplication in LLMs](https://aclanthology.org/2025.findings-emnlp.967/) | Studies repeated execution of pretrained self-attention layers, comparing training-free duplication and fine-tuning variants and analyzing attention changes across language tasks; fine-tuning is not assumed to preserve strict tying. |
 | 2025-11 | Core · Training/reinforcement learning | [LSRL: Process-Supervised GRPO on Latent Recurrent States Improves Mathematical Reasoning](https://aclanthology.org/2025.findings-emnlp.669/) | Decodes intermediate Huginn recurrent states to assign process rewards and applies LoRA-based GRPO, testing dense latent-step supervision for mathematical reasoning. |
+
+#### October 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-10-29 | Related · Recursive reasoning/application | [Implementasi Konsep Tiny Recursion Model Pada Kasus Klasifikasi](https://ejurnal.undipa.ac.id/index.php/jusiti/article/view/2046) | Implements a small shared two-layer neural classifier with ten recursive refinement steps in Keras/TensorFlow and evaluates tabular classification; the repeated operator is an MLP rather than a Transformer. |
 | 2025-10-29 | Core · Architecture | [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741) [Project](https://ouro-llm.github.io/) [Model](https://huggingface.co/ByteDance/Ouro-2.6B) | Ouro pretrains looped 1.4B and 2.6B language models on 7.7T tokens with entropy-regularized learned depth allocation. |
 | 2025-10-28 | Core · Systems | [Parallel Loop Transformer for Efficient Test-Time Computation Scaling](https://arxiv.org/abs/2510.24824) | Overlaps different tokens' loop steps and shares first-loop KV through gated sliding-window attention to reduce loop latency and cache growth. |
@@ -409,23 +451,48 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2025-10-06 | Related · Recursive reasoning | [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871) [Code](https://github.com/SamsungSAILMontreal/TinyRecursiveModels) | TRM alternately refines latent and answer states with one tiny shared network, simplifying HRM for structured puzzle reasoning. |
 | 2025-10-04 | Related · Recursive reasoning/application | [Exploring the Hierarchical Reasoning Model for Small Natural-Image Classification Without Augmentation](https://arxiv.org/abs/2510.03598) [Code](https://github.com/mantzaris/ImagesHRM) | Evaluates HRM on MNIST and small natural-image classification without augmentation, finding stable optimization but weak CIFAR generalization and substantially slower training than a simple CNN. |
 | 2025-10-02 | Core · Architecture | [ReSSFormer: A Recursive Sparse Structured Transformer for Scalable and Long-Context Reasoning](https://arxiv.org/abs/2510.01585) | Reuses a memory-augmented block across reasoning iterations, combining adaptive sparse attention with content-derived latent token structure. |
+
+#### September 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-09-30 | Related · Recursive reasoning/analysis | [Hierarchical Reasoning Models: Perspectives and Misconceptions](https://arxiv.org/abs/2510.00355) | Examines HRM design choices and alternative recurrent variants while clarifying misconceptions; the revised paper removes erroneous results and changes conclusions from its first version. |
 | 2025-09-30 | Core · Analysis/inference | [Latent Thinking Optimization: Your Latent Reasoning Language Model Secretly Encodes Reward Signals in Its Latent Thoughts](https://arxiv.org/abs/2509.26314) [Code](https://github.com/ninglab/LTO) | Trains a latent reward classifier on Huginn recurrent thoughts and uses probabilistic latent-thinking optimization to improve answer correctness without requiring verbal reasoning traces. |
 | 2025-09-27 | Core · Analysis/adaptive depth | [Two-Scale Latent Dynamics for Recurrent-Depth Transformers](https://arxiv.org/abs/2509.23314) | Studies small within-block refinements and larger across-block drift, motivating an early exit based on second-order differences in update magnitude. |
 | 2025-09-26 | Core · Systems/application | [SAI: Latency-Aware Satellite Edge LAM Inference with Looped Transformer](https://doi.org/10.1109/ICC52391.2025.11161072) | Uses shared-layer looped Transformers for memory-constrained satellite inference, combining data/pipeline parallelism and asynchronous batch overlap across heterogeneous satellites; formulates latency planning as a shortest-path problem. The date is the IEEE Xplore addition date; earliest public release remains unknown. |
 | 2025-09-11 | Core · Application | [MGTraj: Multi-Granularity Goal-Guided Human Trajectory Prediction with Recursive Refinement Network](https://arxiv.org/abs/2509.09200) | Recursively refines complete trajectory proposals from coarse to fine temporal granularities using a shared Transformer encoder, with auxiliary velocity prediction and goal conditioning. |
+
+#### August 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-08-22 | Core · Analysis | [Beyond Memorization: Extending Reasoning Depth with Recurrence, Memory and Test-Time Compute Scaling](https://arxiv.org/abs/2508.16745) [Code](https://github.com/RodkinIvan/associative-recurrent-memory-transformer/tree/ACT) | Uses held-out cellular-automata rules to test compositional reasoning depth, measuring benefits and remaining limits of recurrence, memory, and extra inference compute. |
 | 2025-08-17 | Core · Application/parameter sharing | [Exploring Shared-Weight Mechanisms in Transformer and Conformer Architectures for Automatic Speech Recognition](https://www.isca-archive.org/interspeech_2025/rolland25_interspeech.html) | Compares whole-layer and component-wise depth sharing in Transformer and Conformer ASR, introduces Shared-Conformer, and evaluates transfer to low-resource children's speech recognition. |
+
+#### July 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-07-14 | Core · Adaptive depth | [Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation](https://arxiv.org/abs/2507.10524) [Code](https://github.com/raymin0223/mixture_of_recursions) | Combines a shared Transformer stack with token-wise recursion routing and recursion-aware KV caching to allocate compute adaptively. |
 | 2025-07-11 | Core · Architecture | [AbbIE: Autoregressive Block-Based Iterative Encoder for Efficient Sequence Modeling](https://arxiv.org/abs/2507.08567) | Loops an encoder-style Transformer body between head and tail blocks; compares direct latent recurrence with an additional inter-iteration residual and studies inference-depth extrapolation after two-iteration training. |
 | 2025-07-10 | Core · Adaptive depth/retrofit | [Skip a Layer or Loop it? Test-Time Depth Adaptation of Pretrained LLMs](https://arxiv.org/abs/2507.07996) | Searches sample-specific layer programs with Monte Carlo Tree Search, allowing pretrained layers to be skipped, repeated, and reordered without fine-tuning. Its correctness-feedback search measures attainable potential rather than directly establishing a deployable stopping policy. |
 | 2025-07-08 | Survey | [A Survey on Latent Reasoning](https://arxiv.org/abs/2507.06203) | Surveys activation recurrence, hidden-state propagation, and implicit reasoning; covers looped depth within a broader latent-reasoning taxonomy. |
 | 2025-07-02 | Core · Analysis | [Latent Chain-of-Thought? Decoding the Depth-Recurrent Transformer](https://arxiv.org/abs/2507.02199) [Code](https://github.com/wenquanlu/huginn-latent-cot) | Probes Huginn arithmetic trajectories, finding limited interpretable latent CoT and strong dependence on layer index and decoding lens. |
+
+#### June 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-06-27 | Core · Adaptive depth/routing | [Towards Distributed Neural Architectures](https://arxiv.org/abs/2506.22389) | Learns token-dependent paths through reusable Transformer modules in arbitrary order, studying emergent module reuse, specialization, and compute allocation in vision and language models. |
 | 2025-06-26 | Related · Recursive reasoning | [Hierarchical Reasoning Model](https://arxiv.org/abs/2506.21734) [Code](https://github.com/sapientinc/HRM) | Uses two coupled recurrent modules at different timescales for latent planning and execution on Sudoku, mazes, and ARC without CoT supervision. |
 | 2025-06-23 | Core · Scaling/analysis | [Beyond Parameters: Exploring Virtual Logic Depth for Scaling Laws](https://arxiv.org/abs/2506.18233) | Studies virtual logical depth from reusing Transformer weights during training and inference, separating knowledge capacity from reasoning gains across architectures and reuse schedules. |
 | 2025-06-23 | Related · Expert recurrence | [Chain-of-Experts: Unlocking the Communication Power of Mixture-of-Experts Models](https://arxiv.org/abs/2506.18945) [Code](https://github.com/ZihanWang314/coe) | Processes tokens through sequentially routed experts inside each Transformer layer, re-evaluating expert choice at each iteration and studying expert-iteration scaling under fixed compute. |
 | 2025-06-18 | Core · Theory/application | [When and How Unlabeled Data Provably Improve In-Context Learning](https://arxiv.org/abs/2506.15329) | Analyzes how looped linear attention exploits unlabeled in-context examples through polynomial estimators, then loops pretrained tabular foundation models for semi-supervised inference. |
+
+#### May 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-05-30 | Core · Retrofit/training | [SCOUT: Teaching Pre-trained Language Models to Enhance Reasoning via Flow Chain-of-Thought](https://arxiv.org/abs/2505.24181) | Fine-tunes recursive language models with teachers of increasing capacity and retrospective cross-attention over earlier iterations to supervise progressive latent reasoning without pretraining from scratch. |
 | 2025-05-27 | Related · Latent reasoning | [PonderLM: Pretraining Language Models to Ponder in Continuous Space](https://arxiv.org/abs/2505.20674) [Code](https://github.com/LUMIA-Group/PonderingLM) | Repeats full forward passes within token generation, feeding back a probability-weighted embedding mixture learned through self-supervised pretraining. |
 | 2025-05-26 | Core · Analysis/training | [Recurrent Self-Attention Dynamics: An Energy-Agnostic Perspective from Jacobians](https://arxiv.org/abs/2505.19458) | Analyzes recurrent self-attention through Jacobians beyond symmetric single-head energy assumptions, studying normalization, oscillatory dynamics, Lyapunov exponents, and Jacobian-based regularization. |
@@ -433,7 +500,17 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2025-05-25 | Core · Theory | [Exact Expressive Power of Transformers with Padding](https://arxiv.org/abs/2505.18948) | Characterizes padded Transformers with dynamically increased looping depth, connecting logarithmic and polylogarithmic loops to uniform circuit complexity classes. |
 | 2025-05-22 | Core · Application | [LARES: Latent Reasoning for Sequential Recommendation](https://arxiv.org/abs/2505.16865) | Builds sequential recommenders around a shared recurrent Transformer core, using trajectory- and step-level alignment followed by reinforcement post-training to improve latent reasoning over item sequences. |
 | 2025-05-03 | Core · Architecture | [Intra-Layer Recurrence in Transformers for Language Modeling](https://arxiv.org/abs/2505.01855) [Code](https://github.com/ant-8/Layer-Recurrent-Transformers) | Studies per-layer reuse maps that allocate different recurrence counts across a Transformer, evaluating language modeling at 1.2M and 100M parameters. |
+
+#### March 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-03-05 | Core · Theory | [A Little Depth Goes a Long Way: The Expressive Power of Log-Depth Transformers](https://arxiv.org/abs/2503.03961) [Code](https://github.com/jopetty/word-problem/tree/willm/log-depth/log-depth) | Shows that shared-depth universal Transformers with logarithmic depth recognize regular languages and solve graph connectivity under the paper's specified attention and precision assumptions. |
+
+#### February 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-02-28 | Core · Theory | [Transformers Learn to Implement Multi-step Gradient Descent with Chain of Thought](https://arxiv.org/abs/2502.21212) | Analyzes learning multi-step in-context gradient descent; additionally proves performance benefits from looping linear Transformers rather than applying one untied step. |
 | 2025-02-24 | Core · Theory | [Reasoning with Latent Thoughts: On the Power of Looped Transformers](https://arxiv.org/abs/2502.17416) | Combines reasoning experiments and constructions showing that shared loops can match effective depth and simulate CoT, and proposes looping-based regularization. |
 | 2025-02-19 | Core · Adaptive depth | [Inner Thinking Transformer: Leveraging Dynamic Depth Scaling to Foster Adaptive Internal Thinking](https://arxiv.org/abs/2502.13842) | Combines repeated shared-layer computation, token routing, residual thinking connections, and step encodings to allocate extra internal computation to important tokens. |
@@ -444,6 +521,11 @@ All 393 dated main-window works appear below; 5 additional confirmed publication
 | 2025-02-12 | Core · Training | [Enhancing Auto-regressive Chain-of-Thought through Loop-Aligned Reasoning](https://arxiv.org/abs/2502.08482) [Code](https://github.com/qifanyu/RELAY) | RELAY supervises loop iterations with reasoning steps, then uses length-generalizing looped models to generate rationales for autoregressive-model fine-tuning. |
 | 2025-02-11 | Core · Architecture/scaling | [Recursive Inference Scaling: A Winning Path to Scalable Inference in Language and Multimodal Systems](https://arxiv.org/abs/2502.07503) | Introduces RINS, a recursive depth schedule for language and multimodal Transformers, with compute-matched comparisons, data-scaling analysis, and stochastic recursion for optional inference-time scaling. |
 | 2025-02-07 | Core · Architecture | [Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach](https://arxiv.org/abs/2502.05171) [Code](https://github.com/seal-rg/recurrent-pretraining) [Model](https://huggingface.co/tomg-group-umd/huginn-0125) | Huginn scales a shared recurrent block to 3.5B parameters and 800B tokens, using additional latent iterations for test-time reasoning compute. |
+
+#### January 2025
+
+| Date | Track | Paper Title | Summary |
+| :---: | :--- | :--- | :--- |
 | 2025-01-30 | Core · Compression/retrofit | [DeltaLLM: Compress LLMs with Low-Rank Deltas between Shared Weights](https://arxiv.org/abs/2501.18596) | Compresses pretrained LLMs by sharing corresponding layers across subsequent Transformer blocks and learning depth-specific low-rank delta matrices with progressive module replacement. |
 | 2025-01-26 | Related · Systems/depth sharing | [StagFormer: Time Staggering Decoder-only Transformers](https://arxiv.org/abs/2501.15665) | Staggers Transformer stacks across token positions to parallelize decoding; shared-weight variants reuse the same stack, and an appendix approximates recurrent decoding using prior-token activations. |
 | 2025-01-24 | Core · Compression/retrofit | [FlexiGPT: Pruning and Extending Large Language Models with Low-Rank Weight Sharing](https://arxiv.org/abs/2501.14713) | Replaces selected Transformer blocks with shared surviving blocks plus block-specific low-rank adapters, using SVD initialization and feature normalization for compression and model extension. |
@@ -477,31 +559,23 @@ These 8 works are relevant to a 2025 reading list, but their arXiv originals app
 | 2023-10-16 | [ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/hash/1eaa5146756be028ad6fff1efcc8e6bd-Abstract-Conference.html) | [CoTFormer: A Chain-of-Thought Driven Architecture with Budget-Adaptive Computation Cost at Inference](https://arxiv.org/abs/2310.10845) | Reuses Transformer blocks while allowing attention to earlier recurrence states, then routes tokens through variable repeat counts to adapt inference compute. |
 | 2023-08-18 | [TPAMI 2025](https://doi.org/10.1109/TPAMI.2025.3595380) | [Deep Equilibrium Object Detection and Segmentation](https://arxiv.org/abs/2308.09564) [Code](https://github.com/MCG-NJU/DEQDet) | Extends DEQ query refinement from object detection to instance segmentation, using implicit fixed-point decoding, refinement-aware gradients, and perturbation-based deep supervision. Earlier DEQDet preprint; the 2025 journal version extends it to segmentation. |
 
-## Version notes and unresolved candidates
+<a id="scope-and-inclusion-policy"></a>
+<a id="suggested-reading-order"></a>
+<a id="version-notes-and-unresolved-candidates"></a>
+<a id="search-method-and-exclusions"></a>
 
-- **One work, two arXiv records:** [To CoT or To Loop?](https://arxiv.org/abs/2505.19245) explicitly points to [A Formal Comparison Between Chain of Thought and Latent Thought](https://arxiv.org/abs/2509.25239) as its latest version. One row is retained, dated `2025-05-25`; the newer record's own v1 is `2025-09-25`.
-- **Renamed papers:** [Think-at-Hard](https://arxiv.org/abs/2511.08577) previously used “Selective Latent Iterations to Improve Reasoning Language Models”; [Gated Recurrent Transformers](https://arxiv.org/abs/2608.15062) appears as “RecurrentGPT” in older indexes. Titles follow the current primary records, without creating duplicate entries.
-- **Acronym collision:** Yu et al.'s [LoopCD](https://arxiv.org/abs/2609.24196) and Liu et al.'s [Decoding Looped Transformers Better for (Almost) Free](https://arxiv.org/abs/2610.02185) are different papers with different authors and arXiv IDs, both using the LoopCD name. They are retained separately.
-- **Corrected findings:** [Relational Preference Encoding](https://arxiv.org/abs/2604.09870) carries a v2 erratum for ordering artifacts and train/test leakage; its original headline accuracies and inverted-polarity claim are not retained. [What Makes Looped Transformers Perform Better](https://arxiv.org/abs/2510.10089) dropped “(Provably)” from its title; its landscape-bias account is not presented as an unconditional superiority theorem.
-- **Date traps:** [Rotate the Loop](https://arxiv.org/abs/2610.14030) has a `2610` identifier but a `2026-09-30` v1 timestamp. The [2026 survey](https://www.preprints.org/manuscript/202610.1404) was submitted on October 12 and publicly posted on October 15; it is labeled Survey and is not peer-reviewed.
-- **Code availability:** the paper-provided [Loopy](https://arxiv.org/abs/2610.05265) repository returned public 404, so no public Code link is advertised. Ouro's official [project](https://ouro-llm.github.io/) and model files are linked; its community training reimplementation is not labeled official training code.
-- **Resolved mechanism:** [CHERRY's full text, section 4.3.2](https://arxiv.org/html/2606.31796v2#S4.SS3.SSS2) explicitly unrolls a shared Transformer core between a prelude and coda. The earlier abstract-only uncertainty was insufficient; CHERRY is now included.
-- **Publisher-date convention:** [SAI](https://ieeexplore.ieee.org/document/11161072/) is dated `2025-09-26` using its verified IEEE Xplore addition date; the ICC conference was June 8–12. Its earliest public date is not established, and the indexing date is labeled explicitly rather than treated as a preprint date.
-- **Conference-only metadata:** ACL/CVPR entries with only a publication month retain `YYYY-MM`. [ChainGPT](https://proceedings.iclr.cc/paper_files/paper/2026/hash/74aec30590e07dbe2e29879f9df14fb2-Abstract-Conference.html) and [MoDr](https://proceedings.iclr.cc/paper_files/paper/2026/hash/8a81180649011d1690e05c68bfeaa57c-Abstract-Conference.html) are retained in the confirmed-publications table; OpenReview access challenges still prevent verification of their exact original public dates.
-- **Part I is now a formal paper:** [Towards Looped Models Done Right, Part I](https://arxiv.org/abs/2610.23036) was submitted on `2026-10-16`, following an earlier blog resource; it is counted once as a paper. [Part II](https://arxiv.org/abs/2610.06833) remains a distinct paper dated `2026-10-05`. [Polymorphic Universal Transformer](https://aclanthology.org/2026.acl-long.1809/) and the original [LoopCoder](https://aclanthology.org/2026.findings-acl.796/) have official ACL records and are included even without verified arXiv IDs. LoopCoder and LoopCoder-v2 are distinct papers.
+## Reading and curation guide
 
-- **Formal-title aliases:** [Zero Token-Driven Deep Thinking](https://arxiv.org/abs/2502.12214) and [Efficient Transformer Parameter Reuse via Zero-Token Mechanism](https://aclanthology.org/2026.findings-acl.711/) are one work, retained at the original `2025-02-17` arXiv date.
-- **More revision caveats:** [HRM: Perspectives and Misconceptions](https://arxiv.org/abs/2510.00355) reports errors and changed conclusions in v2; the summary avoids its removed findings. [Flow Reasoning Models](https://arxiv.org/abs/2606.29150) has differing abstract-page and HTML titles; these are one identifier, not two papers.
-- **Additional date and code checks:** [The Ignition Index](https://arxiv.org/abs/2608.05160) has a `2608` identifier but a `2026-05-26` v1 date. TRM-QE's paper-linked repository returned public 404 during this refresh, so no available Code link is shown. Full dispositions and unresolved publisher-only candidates are in the [latest audit](docs/search-audit-2026-10-20.md).
+Start with the [suggested reading order](docs/reading-guide.md#suggested-reading-order), or consult the [scope and inclusion policy](docs/reading-guide.md#scope-and-inclusion-policy). The guide also preserves [date conventions and snapshot counts](docs/reading-guide.md#snapshot-and-date-conventions), [version notes and unresolved candidates](docs/reading-guide.md#version-notes-and-unresolved-candidates), and the [search method and exclusions](docs/reading-guide.md#search-method-and-exclusions).
 
-## Search method and exclusions
-
-The audit combined web and arXiv searches for `looped transformer`, `loop transformer`, `looped language model`, `recurrent depth`, `depth-recurrent`, `recursive transformer`, `universal transformer`, `weight-tied`, `adaptive recurrence`, `looped MoE`, and `latent reasoning`, with citation/project follow-up and recent September–October 2026 searches. Candidate discovery was cross-checked against [HJSang's looped-Transformer list](https://github.com/HJSang/awesome-looped-transformers) and [Awesome Loop Models](https://github.com/huskydoge/Awesome-Loop-Models); metadata and summaries were checked against the individual primary sources linked in each row. The October 20 refresh additionally checked the now-public [survey author corpus](https://github.com/ArminAzizi98/looped-lm-survey), screening 143 unmatched arXiv identifiers and 26 selected publisher-only records; it did not adopt that corpus's own scope or completeness claims.
-
-The audit excludes generic agent loops, token-level repetition in generated reasoning, recurrent GNNs, and broad fixed-point or time-series SSM papers without a substantive Transformer-depth contribution. For example, [Hidden Decoding at Scale](https://arxiv.org/abs/2607.08186) expands the token stream, [Full-bandwidth transformer](https://arxiv.org/abs/2608.08888) feeds state between tokens, and [Bifurcation Models](https://arxiv.org/abs/2605.07277) studies generic scientific equilibrium dynamics. These are not counted as core looped-Transformer papers. The explicitly Related row for [Recurrent Looped Transformer](https://arxiv.org/abs/2610.07591) records its token-state recurrence so its title is not mistaken for a within-token depth-loop design.
-
-Search indexes can lag, and conference-only or unindexed manuscripts can be missed. Ambiguous mechanisms and dates are disclosed above. Product-architecture rumors, social posts, model cards without a formal paper, and implementation repositories alone are not counted as papers. New versions are not new papers; reported empirical improvements remain conditional on each paper's experimental protocol.
+The literature snapshot remains **2026-10-20**. See the [latest search audit](docs/search-audit-2026-10-20.md) for evidence and candidate decisions, and the [previous audit](docs/search-audit-2026-10-15.md) for historical context.
 
 ## Contributing
 
-Issues and PRs are welcome. Please provide the primary paper URL, arXiv v1 or primary publication date at its verified precision, a brief explanation of what is looped, and any author-linked public code. Add a row in date-descending order, or use the confirmed-publications table if the original date remains unresolved; use the appropriate Core/Related/Survey tag, deduplicate earlier versions, and update the coverage counts and badge together. Preserve original preprint dates when a paper is later accepted or revised.
+Issues and PRs are welcome. For each paper, include:
+
+- A primary paper URL and first-public date at its verified precision.
+- A brief explanation of what is looped and the appropriate Core / Related / Survey track.
+- Author- or paper-linked public code, when available.
+
+Add papers in reverse date order, alphabetically by title on the same day. Keep month-only dates after day-dated entries in the same month; use the unresolved-dates table when needed. Deduplicate versions, preserve original preprint dates, and update the counts and badges together. See the [full contribution policy](docs/reading-guide.md#contributing).
