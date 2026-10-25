@@ -19,12 +19,11 @@ A curated list of papers and code on **looped Transformers**, **recurrent-depth 
 | [2026](#2026)&nbsp;(317) | [Oct](#october-2026) · [Sep](#september-2026) · [Aug](#august-2026) · [Jul](#july-2026) · [Jun](#june-2026) · [May](#may-2026) · [Apr](#april-2026) · [Mar](#march-2026) · [Feb](#february-2026) · [Jan](#january-2026) |
 | [2025](#2025)&nbsp;(76) | [Dec](#december-2025) · [Nov](#november-2025) · [Oct](#october-2025) · [Sep](#september-2025) · [Aug](#august-2025) · [Jul](#july-2025) · [Jun](#june-2025) · [May](#may-2025) · [Mar](#march-2025) · [Feb](#february-2025) · [Jan](#january-2025) |
 | More papers | [Unresolved dates](#confirmed-publications-with-unresolved-dates) (5) · [Earlier preprints](#earlier-preprints-with-2025-venues) (8) |
-| Reading guide | [Scope](docs/reading-guide.md#scope-and-inclusion-policy) · [Suggested reading](docs/reading-guide.md#suggested-reading-order) · [Version notes](docs/reading-guide.md#version-notes-and-unresolved-candidates) |
-| Curation | [Latest audit](docs/search-audit-2026-10-20.md) · [Previous audit](docs/search-audit-2026-10-15.md) · [Contributing](#contributing) |
+| Reading guide | [Scope](docs/reading-guide.md#scope-and-inclusion-policy) · [Suggested reading](docs/reading-guide.md#suggested-reading-order) · [Date conventions](docs/reading-guide.md#date-conventions-and-ordering) · [Contributing](#contributing) |
 
 ## Papers: 2025–2026
 
-**398 papers · 118 entries with code** · 306 Core / 89 Related / 3 Survey · Literature snapshot: **2026-10-20**.
+**398 papers · 118 entries with code** · 306 Core / 89 Related / 3 Survey.
 
 The timeline contains **393 dated papers**; [5 confirmed publications with unresolved dates](#confirmed-publications-with-unresolved-dates) complete the main catalog. The [8 earlier preprints](#earlier-preprints-with-2025-venues) are excluded from that count.
 
@@ -561,14 +560,9 @@ These 8 works are relevant to a 2025 reading list, but their arXiv originals app
 
 <a id="scope-and-inclusion-policy"></a>
 <a id="suggested-reading-order"></a>
-<a id="version-notes-and-unresolved-candidates"></a>
-<a id="search-method-and-exclusions"></a>
+## Reading guide
 
-## Reading and curation guide
-
-Start with the [suggested reading order](docs/reading-guide.md#suggested-reading-order), or consult the [scope and inclusion policy](docs/reading-guide.md#scope-and-inclusion-policy). The guide also preserves [date conventions and snapshot counts](docs/reading-guide.md#snapshot-and-date-conventions), [version notes and unresolved candidates](docs/reading-guide.md#version-notes-and-unresolved-candidates), and the [search method and exclusions](docs/reading-guide.md#search-method-and-exclusions).
-
-The literature snapshot remains **2026-10-20**. See the [latest search audit](docs/search-audit-2026-10-20.md) for evidence and candidate decisions, and the [previous audit](docs/search-audit-2026-10-15.md) for historical context.
+Start with the [suggested reading order](docs/reading-guide.md#suggested-reading-order), or consult the [scope and inclusion policy](docs/reading-guide.md#scope-and-inclusion-policy) and [date conventions](docs/reading-guide.md#date-conventions-and-ordering).
 
 ## Contributing
 
